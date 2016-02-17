@@ -5,11 +5,15 @@ from random import getrandbits
 from random import randint
 from time import gmtime, strftime
 
+import os
 import tweepy
 
-from secrets import *
-
 import village
+
+C_KEY = os.environ['C_KEY']
+C_SECRET = os.environ['C_SECRET']
+A_TOKEN = os.environ['A_TOKEN']
+A_TOKEN_SECRET = os.environ['A_TOKEN_SECRET']
 
 # The following a lists of sentence starters for the generator:
 
@@ -105,3 +109,4 @@ def tweet(text):
 if __name__ == "__main__":
     message = construct_tweet()
     tweet(message)
+
