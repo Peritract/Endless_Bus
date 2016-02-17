@@ -104,4 +104,4 @@ def tweet(text):
 #Actually does stuff.
 if __name__ == "__main__":
     message = construct_tweet()
-    tweet(tweet)
+    tweet(message)
