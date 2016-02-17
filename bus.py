@@ -101,9 +101,11 @@ def tweet(text):
     try:
         api.update_status(text)
     except tweepy.error.TweepError as e:
-        log(e.message)
+        pass
+        #log(e.message)
     else:
-        log("Tweeted: " + text)
+        pass
+        #log("Tweeted: " + text)
 
 #Actually does stuff.
 if __name__ == "__main__":
