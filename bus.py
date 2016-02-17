@@ -97,9 +97,6 @@ def tweet(text):
 
 #Actually does stuff.
 if __name__ == "__main__":
-    while True:
-        message = construct_tweet()
-        tweet(message)
-        sleep(1800)
-        
-
+    message = construct_tweet()
+    tweet(message)
+    sleep(1800)
