@@ -3,7 +3,7 @@
 from random import choice
 from random import getrandbits
 from random import randint
-from time import gmtime, strftime
+from time import gmtime, strftime, sleep
 
 import os
 import tweepy
@@ -44,21 +44,21 @@ def construct_location_tweet():
     return text
 
 def construct_thanks_tweet():
-        # Creates a sentence for the bot to post, thanking passengers.
+    # Creates a sentence for the bot to post, thanking passengers.
     place = village.construct_village()
     sentence = choice(thanks_sentences)
     text = sentence + " " + place + "."
     return text
 
 def construct_reminder_tweet():
-        # Creates a sentence for the bot to post, reminding passengers.
+    # Creates a sentence for the bot to post, reminding passengers.
     sentence = choice(reminder_sentences)
     reminder = choice(reminders)
     text = sentence + " " + reminder + "."
     return text
 
 def construct_excuse_tweet():
-        # Creates a sentence for the bot to post, making an excuse for lateness.
+    # Creates a sentence for the bot to post, making an excuse for lateness.
     place = village.construct_village()
     excuse = choice(excuses)
     excuse_place = village.construct_village()
@@ -84,31 +84,20 @@ def construct_tweet():
     return tweet
 
 # A function to log things, when needed.
-def log(text):
-    time = strftime("%d-%m-%Y %H:%M:%S", gmtime())
-    with open('bus_log.txt','a') as log_file:
-        log_file.write(time + ": " + text + '\n')
 
-
-# Twitter stuff, that I don't fully understand. Basically, Twitter needs passwords to let the bot do stuff, these functions/variables provide them. Then it posts the tweet. If the tweet doesn't work, it throws an error instead. All of that gets logged.
+# Twitter stuff, that I don't fully understand. Basically, Twitter needs passwords to let the bot do stuff, these functions/variables provide them. Then it posts the tweet. If the tweet doesn't work, it throws an error instead. Currently, none of this gets logged, because I can't work out how.
 
 def tweet(text):
     auth = tweepy.OAuthHandler(C_KEY, C_SECRET)
     auth.set_access_token(A_TOKEN, A_TOKEN_SECRET)
     api = tweepy.API(auth)
 
-    # Send the tweet and log success or failure
-    try:
-        api.update_status(text)
-    except tweepy.error.TweepError as e:
-        pass
-        #log(e.message)
-    else:
-        pass
-        #log("Tweeted: " + text)
+    # Send the tweet.
+    api.update_status(text)
 
 #Actually does stuff.
 if __name__ == "__main__":
     message = construct_tweet()
     tweet(message)
+    sleep(1800)
 
