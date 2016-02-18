@@ -100,4 +100,4 @@ if __name__ == "__main__":
     while True:
         message = construct_tweet()
         tweet(message)
-        sleep(1800)
+        sleep(3600)
