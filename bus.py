@@ -83,10 +83,6 @@ def construct_tweet():
         length = len(tweet)
     return tweet
 
-# A function to log things, when needed.
-
-# Twitter stuff, that I don't fully understand. Basically, Twitter needs passwords to let the bot do stuff, these functions/variables provide them. Then it posts the tweet. If the tweet doesn't work, it throws an error instead. Currently, none of this gets logged, because I can't work out how.
-
 def tweet(text):
     auth = tweepy.OAuthHandler(C_KEY, C_SECRET)
     auth.set_access_token(A_TOKEN, A_TOKEN_SECRET)
